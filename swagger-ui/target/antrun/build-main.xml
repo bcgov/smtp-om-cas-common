@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <echo message="Decompress archive"/>
+  <gunzip src="E:\James\Projects\SMTP\smtp-om\smtp-om-cas-common\cas-integration-services\swagger-ui\target/swagger-ui-2.2.5.tar.gz" dest="E:\James\Projects\SMTP\smtp-om\smtp-om-cas-common\cas-integration-services\swagger-ui\target"/>
+  <untar src="E:\James\Projects\SMTP\smtp-om\smtp-om-cas-common\cas-integration-services\swagger-ui\target/swagger-ui-2.2.5.tar" dest="E:\James\Projects\SMTP\smtp-om\smtp-om-cas-common\cas-integration-services\swagger-ui\target"/>
+  <echo message="moving resources"/>
+  <move todir="target/swagger-ui" overwrite="yes">
+    <fileset dir="E:\James\Projects\SMTP\smtp-om\smtp-om-cas-common\cas-integration-services\swagger-ui\target/swagger-ui-2.2.5/dist"/>
+  </move>
+</target>
+</project>

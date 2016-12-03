@@ -1,0 +1,51 @@
+SMTP-OM-CAS-COMMON
+=========================================
+Common Services for interacting with CAS
+
+### Project Contents
+	api - REST APIs used by the Core OM Services.  These are mostly program area specific
+	swagger-ui - POM file to download and package the swagger-ui app so that it can be run in an OSGI container
+
+### Build	
+To build this project use
+
+    mvn install (note swagger-ui component must be triggered seperately)
+
+### Fuse Pre-requisites:
+
+	Fuse 6.3
+	features:install war
+	features:install camel-jetty
+	features:install camel-jackson
+	features:install camel-swagger-java
+	features:install camel-servlet (may not be required)
+
+### Deploy API	
+To deploy the project in OSGi. For example using Apache Karaf.
+You can run the following command from its shell:
+
+   osgi:install -s file:{build directory}//smtp-om-glvalidation-1.0.0-SNAPSHOT.jar
+   e.g.  osgi:install -s file:C:\\Users\\jjose\\workspace9\\smtp-om-core\\api\\target//smtp-om-glvalidation-1.0.0-SNAPSHOT.jar
+   OR
+   osgi:install -s mvn:com.smtp/smtp-om-glvalidation/1.0.0-SNAPSHOT
+   
+### Deploy Swagger UI   
+
+To deploy swagger UI in OSGi:
+
+	install -s war:file:{build directory}//swagger-ui.war?Web-ContextPath=swagger-ui
+	eg: install -s war:file:C:\\Users\\jjose\\workspace9\\smtp-om-core\\swagger-ui\\target\\swagger-ui.war?Web-ContextPath=swagger-ui 
+
+### Run Swagger with explorer
+   http://{server}:{default web port}/swagger-ui/
+   eg: http://localhost:8181/swagger-ui/
+
+### To Explore documentation and Test API using Swagger UI
+ 
+   http://{server}:{port}/{contextPath}/{apiContextPath}/{rest path}/swagger.json
+   e.g. http://localhost:9091/smtp-om/api/v1/api-docs/casIntegrationservices/swagger.json
+
+For more help see the Apache Camel documentation
+
+    http://camel.apache.org/
+
